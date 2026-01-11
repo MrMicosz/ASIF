@@ -1,0 +1,13 @@
+# --- AI & Data Science (สมองของ BioKey) ---
+pandas
+numpy
+scikit-learn
+
+# --- Web Backend (พนักงานเสิร์ฟ API) ---
+fastapi
+uvicorn
+jinja2
+python-multipart
+
+# --- Packaging (สำหรับทำ EXE ในอนาคต) ---
+pyinstaller
