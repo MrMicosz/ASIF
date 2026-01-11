@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Soft Identity Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">Bio-Key</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#problem" class="text-gray-600 hover:text-blue-600 px-3 py-2">ปัญหา</a>
+                        <a href="#concept" class="text-gray-600 hover:text-blue-600 px-3 py-2">แนวคิด</a>
+                        <a href="#technical" class="text-gray-600 hover:text-blue-600 px-3 py-2">เทคนิค</a>
+                        <a href="#use-cases" class="text-gray-600 hover:text-blue-600 px-3 py-2">การใช้งาน</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Adaptive Soft Identity Framework</h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                ก้าวข้ามขีดจำกัดของ Hard Identity สู่การยืนยันตัวตนด้วย "อัตลักษณ์เชิงพฤติกรรม" เพื่อความปลอดภัยขั้นสูงสุดในระบบการเงินดิจิทัล
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#concept" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition">เรียนรู้เพิ่มเติม</a>
+                <a href="#technical" class="border border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-full font-semibold transition">ดูข้อมูลทางเทคนิค</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">ทำไม "Hard Identity" ถึงไม่เพียงพอ?</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-gray-600 mb-6">
+                        ในปัจจุบัน อาชญากรไม่ได้ใช้เพียงช่องโหว่ทางเทคนิค แต่ใช้ <strong>Social Engineering</strong> เพื่อหลอกให้เจ้าของบัญชีดำเนินการด้วยตัวเอง 
+                        เมื่อข้อมูล Hard Identity (รหัสผ่าน, OTP, ใบหน้า) ถูกต้อง ระบบเดิมจึงไม่สามารถแยกแยะ "ผู้ใช้จริง" ออกจาก "ผู้ไม่หวังดี" ได้
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="bg-red-100 text-red-600 p-1 rounded-full mr-3 mt-1">✕</span>
+                            <span>ป้องกันบัญชีม้าที่เปิดอย่างถูกต้องตามกฎหมายไม่ได้</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-red-100 text-red-600 p-1 rounded-full mr-3 mt-1">✕</span>
+                            <span>ตรวจจับพฤติกรรม "การพิมพ์ตามคำบอก" หรือความลังเลไม่ได้</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">ช่องว่างที่เกิดขึ้น</h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between border-b pb-2">
+                            <span>ความถูกต้องของข้อมูล (Hard ID)</span>
+                            <span class="text-green-600 font-bold">100% (ผ่าน)</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-2">
+                            <span>พฤติกรรมการใช้งานจริง</span>
+                            <span class="text-red-600 font-bold">ผิดปกติ (ตรวจไม่พบ)</span>
+                        </div>
+                        <p class="italic text-gray-500 mt-4">* นี่คือจุดที่ Soft Identity เข้ามาเติมเต็ม</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section id="concept" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Soft Identity คืออะไร?</h2>
+                <p class="text-gray-600">อัตลักษณ์ที่เกิดจาก "การกระทำ" ไม่ใช่ "สิ่งที่มี"</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md card-hover">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600 font-bold text-2xl">⌨️</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Behavioral Biometrics</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        วิเคราะห์ลักษณะการพิมพ์ (Typing), การสัมผัส (Touch Dynamics) และแรงกด ซึ่งแต่ละคนมีเอกลักษณ์เฉพาะตัวที่ปลอมแปลงได้ยาก
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md card-hover">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-purple-600 font-bold text-2xl">📍</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Contextual Factors</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        ตรวจสอบสภาพแวดล้อม เช่น อุปกรณ์เดิม, สถานที่เดิม, และช่วงเวลาที่ใช้งานปกติ เพื่อสร้าง Probabilistic Identity Score
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md card-hover">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-green-600 font-bold text-2xl">🧠</div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Adaptive AI</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        ใช้ Machine Learning (One-Class SVM) เรียนรู้พฤติกรรมปกติของผู้ใช้ และปรับเปลี่ยนเกณฑ์การตรวจสอบตามระดับความเสี่ยงแบบ Dynamic
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Details (From Draft Version 1) -->
+    <section id="technical" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Technical Framework</h2>
+                <p class="text-gray-600">เบื้องหลังการทำงานของระบบ Bio-Key</p>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 bg-gray-900 text-white">
+                        <h3 class="text-2xl font-bold mb-8">Feature Engineering</h3>
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-bold text-blue-400">Keystroke Dynamics</h4>
+                                <p class="text-sm text-gray-400 mt-1">วัดค่า Dwell Time (DT) และ Flight Time (FT) ในระดับมิลลิวินาที พร้อมใช้ Z-score Standardization</p>
+                            </div>
+                            <div class="border-l-4 border-purple-500 pl-4">
+                                <h4 class="font-bold text-purple-400">Touch Dynamics</h4>
+                                <p class="text-sm text-gray-400 mt-1">คำนวณ Velocity, Acceleration และ Curvature ของนิ้วมือ เพื่อแยกแยะ "มนุษย์" ออกจาก "บอท"</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <h4 class="font-bold text-green-400">Spatio-Temporal Vector</h4>
+                                <p class="text-sm text-gray-400 mt-1">มัดรวมข้อมูล Location, Time และ Frequency เพื่อคำนวณความน่าจะเป็นของตัวตน (P(User | Context))</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 md:p-12">
+                        <h3 class="text-2xl font-bold mb-8 text-gray-900">Algorithm & Security</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded mr-4 font-mono text-blue-700">OCSVM</div>
+                                <div>
+                                    <h4 class="font-bold">One-Class SVM</h4>
+                                    <p class="text-sm text-gray-600">เรียนรู้เฉพาะพฤติกรรมเจ้าของบัญชี สร้าง Hyperplane เพื่อโอบล้อมข้อมูลปกติและตรวจจับ Outlier</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-2 rounded mr-4 font-mono text-orange-700">GANs Def</div>
+                                <div>
+                                    <h4 class="font-bold">Adversarial Defense</h4>
+                                    <p class="text-sm text-gray-600">ใช้ Jitter Analysis ตรวจหา Micro-variance ของมนุษย์ ป้องกันการปลอมแปลงพฤติกรรมโดย AI (GANs)</p>
+                                </div>
+                            </div>
+                            <div class="mt-8 p-4 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+                                <h4 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Security Pipeline</h4>
+                                <p class="text-sm">Client-Side SDK ➔ Public Key Encryption ➔ TLS 1.3 ➔ Brain Processor (Server)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="py-20 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">การประยุกต์ใช้งาน</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Case 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-600">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="mr-2">🛡️</span> ป้องกัน Social Engineering
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        เมื่อ AI ตรวจพบพฤติกรรม "ความลังเล" (Hesitation) หรือ "ลำดับการใช้งานที่เร่งรีบผิดปกติ" ระบบจะแสดง <strong>Chat Head แจ้งเตือน</strong> ทันที
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg italic text-blue-800 text-sm">
+                        "โปรดระวัง!! การตัดสินใจของคุณดูต่างจากปกติ อาจมีความเสี่ยงโดน Social Engineering"
+                    </div>
+                </div>
+                <!-- Case 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-red-600">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="mr-2">🐎</span> การตรวจจับบัญชีม้า (Mule Account)
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        หากบัญชีถูกเปลี่ยนมือ พฤติกรรม Soft Identity จะเปลี่ยนไปอย่างสิ้นเชิง AI จะติด Tag ความเสี่ยง (Risk Score 0-100%) และส่งข้อมูลให้ธนาคารเฝ้าระวังทันที
+                    </p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">Risk Scoring</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold">Real-time Tagging</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="py-20 text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-6">ความปลอดภัยที่เข้าถึงใจผู้ใช้งาน</h2>
+            <p class="text-gray-600 mb-10">
+                เรายึดหลัก <strong>User-Centered Design (UCD)</strong> เพื่อให้ระบบความปลอดภัยไม่เป็นภาระ แต่เป็นเหมือน "เพื่อนคู่คิด" ที่คอยช่วยเหลือและให้ความรู้ผู้ใช้ในเวลาที่เสี่ยงที่สุด
+            </p>
+            <p class="text-sm text-gray-400">โครงการนี้ออกแบบภายใต้มาตรฐาน PDPA และจริยธรรมการใช้งาน AI</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <span class="text-2xl font-bold text-blue-400">Bio-Key</span>
+                <p class="text-gray-500 text-sm mt-2">© 2026 KBTG x Samsung Hackathon Team</p>
+            </div>
+            <div class="flex space-x-6 text-gray-400 text-sm">
+                <span>ปพพัชร์ มีวน (ธรรมศาสตร์)</span>
+                <span>และทีมงาน</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
