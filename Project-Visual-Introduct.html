@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adaptive Soft Identity Framework</title>
+    <title>ASIF: Adaptive Soft Identity Framework</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Kanit', 'Sarabun', sans-serif; scroll-behavior: smooth; }
         .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
         .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
         .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .prose { max-width: none; font-family: 'Sarabun', sans-serif; }
+        .chart-container { position: relative; width: 100%; height: 350px; }
+        .step-line::before { content: ''; position: absolute; top: 20px; bottom: 0; left: 20px; width: 2px; background: #E5E7EB; }
+        .feature-icon { transition: transform 0.3s ease; }
+        .card-hover:hover .feature-icon { transform: scale(1.1); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -20,14 +31,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-blue-600">Bio-Key</span>
+                    <span class="text-2xl font-bold text-blue-600 italic"><i class="fas fa-fingerprint mr-2"></i>ASIF</span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#problem" class="text-gray-600 hover:text-blue-600 px-3 py-2">ปัญหา</a>
-                        <a href="#concept" class="text-gray-600 hover:text-blue-600 px-3 py-2">แนวคิด</a>
-                        <a href="#technical" class="text-gray-600 hover:text-blue-600 px-3 py-2">เทคนิค</a>
-                        <a href="#use-cases" class="text-gray-600 hover:text-blue-600 px-3 py-2">การใช้งาน</a>
+                        <a href="#problem" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">ปัญหา</a>
+                        <a href="#concept" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">แนวคิด</a>
+                        <a href="#ai-engine" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">ระบบ AI</a>
+                        <a href="#ai-assistant" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">ผู้ช่วย AI</a>
+                        <a href="#intervention" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">การแก้ไข</a>
+                        <a href="#security" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">ความปลอดภัย</a>
+                        <a href="#framework" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">โครงสร้าง</a>
+                        <a href="#roadmap" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">แผนงาน</a>
                     </div>
                 </div>
             </div>
@@ -36,211 +51,507 @@
 
     <!-- Hero Section -->
     <header class="pt-32 pb-20 gradient-bg text-white">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Adaptive Soft Identity Framework</h1>
-            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
-                ก้าวข้ามขีดจำกัดของ Hard Identity สู่การยืนยันตัวตนด้วย "อัตลักษณ์เชิงพฤติกรรม" เพื่อความปลอดภัยขั้นสูงสุดในระบบการเงินดิจิทัล
+        <div class="max-w-7xl mx-auto px-4 text-center text-white">
+            <h1 class="text-4xl md:text-7xl font-bold mb-4 italic">ASIF</h1>
+            <h2 class="text-2xl md:text-3xl font-light mb-8 opacity-90 tracking-wide font-sans">Adaptive Soft Identity Framework</h2>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                ยกระดับความปลอดภัยระบบการเงินดิจิทัลด้วย "อัตลักษณ์เชิงพฤติกรรม" <br>นวัตกรรมที่ปรับตัวตามตัวตนจริงของผู้ใช้งานในทุกวินาที
             </p>
             <div class="flex justify-center gap-4">
-                <a href="#concept" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition">เรียนรู้เพิ่มเติม</a>
-                <a href="#technical" class="border border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-full font-semibold transition">ดูข้อมูลทางเทคนิค</a>
+                <a href="#concept" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition shadow-lg">เริ่มต้นสำรวจ</a>
+                <a href="#ai-engine" class="border border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-full font-semibold transition">ลองทดสอบ AI</a>
             </div>
         </div>
     </header>
 
     <!-- Problem Section -->
-    <section id="problem" class="py-20">
-        <div class="max-w-7xl mx-auto px-4">
+    <section id="problem" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 text-white">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">ทำไม "Hard Identity" ถึงไม่เพียงพอ?</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 font-sans">ทำไม "Hard Identity" ถึงไม่เพียงพอ?</h2>
                 <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <p class="text-lg text-gray-600 mb-6">
-                        ในปัจจุบัน อาชญากรไม่ได้ใช้เพียงช่องโหว่ทางเทคนิค แต่ใช้ <strong>Social Engineering</strong> เพื่อหลอกให้เจ้าของบัญชีดำเนินการด้วยตัวเอง 
-                        เมื่อข้อมูล Hard Identity (รหัสผ่าน, OTP, ใบหน้า) ถูกต้อง ระบบเดิมจึงไม่สามารถแยกแยะ "ผู้ใช้จริง" ออกจาก "ผู้ไม่หวังดี" ได้
+            <div class="grid md:grid-cols-2 gap-12 items-center text-gray-800">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-600 leading-relaxed font-light">
+                        ในยุคที่มิจฉาชีพหันมาใช้ <strong>Social Engineering</strong> มากขึ้น ระบบความปลอดภัยที่พึ่งพาเพียง Hard Identity (รหัสผ่าน, OTP, ใบหน้า) ไม่สามารถป้องกันภัยที่เกิดจากการโน้มน้าวใจได้ เพราะผู้ใช้งานเป็นคนกดดำเนินการด้วยตัวเอง
                     </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <span class="bg-red-100 text-red-600 p-1 rounded-full mr-3 mt-1">✕</span>
-                            <span>ป้องกันบัญชีม้าที่เปิดอย่างถูกต้องตามกฎหมายไม่ได้</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="bg-red-100 text-red-600 p-1 rounded-full mr-3 mt-1">✕</span>
-                            <span>ตรวจจับพฤติกรรม "การพิมพ์ตามคำบอก" หรือความลังเลไม่ได้</span>
-                        </li>
-                    </ul>
+                    <div class="bg-red-50 p-6 rounded-3xl border-l-8 border-red-500 shadow-sm">
+                        <h4 class="font-bold text-red-800 mb-2 uppercase tracking-tighter font-sans">The Missing Link:</h4>
+                        <ul class="space-y-2 text-sm text-red-700">
+                            <li><i class="fas fa-times-circle mr-2"></i> บัญชีม้าที่ผ่าน KYC อย่างถูกต้อง แต่พฤติกรรมเปลี่ยนไป</li>
+                            <li><i class="fas fa-times-circle mr-2"></i> ความลังเลระหว่างพิมพ์ (Hesitation) ที่บ่งบอกถึงภาวะถูกบีบคั้น</li>
+                            <li><i class="fas fa-times-circle mr-2"></i> ความปลอดภัยที่จบลงทันทีหลังจากขั้นตอนการ Login</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                    <h3 class="text-xl font-bold mb-4 text-blue-600">ช่องว่างที่เกิดขึ้น</h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="flex justify-between border-b pb-2">
-                            <span>ความถูกต้องของข้อมูล (Hard ID)</span>
-                            <span class="text-green-600 font-bold">100% (ผ่าน)</span>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-center relative overflow-hidden">
+                    <div class="mb-6 inline-flex p-5 bg-blue-50 rounded-full text-blue-600">
+                        <i class="fas fa-user-shield text-5xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 font-sans tracking-tight">ASIF: เติมเต็มช่องว่าง</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">
+                        เราเปลี่ยนจากการถามว่า <strong>"คุณมีอะไร?"</strong> (What you have) <br>เป็นการสังเกตและเรียนรู้ว่า <strong>"คุณทำอย่างไร?"</strong> (How you do) เพื่อระบุตัวตนแบบต่อเนื่องตลอดเซสชัน
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Concept Section -->
+    <section id="concept" class="py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">อัตลักษณ์เชิงพฤติกรรม (Soft Identity)</h2>
+            <p class="text-gray-500 mb-16">3 มิติข้อมูลพฤติกรรมที่ ASIF ใช้สร้าง "ลายนิ้วมือดิจิทัล" ของคุณ</p>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-10 rounded-3xl shadow-md card-hover border-b-8 border-blue-500 transition-all">
+                    <div class="text-blue-600 text-4xl mb-6"><i class="fas fa-keyboard"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Keystroke</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">วิเคราะห์จังหวะการพิมพ์ ความเร็ว และแรงกดของนิ้ว ซึ่งมีรูปแบบเฉพาะตัวที่ปลอมแปลงได้ยากแม้จะรู้รหัสผ่าน</p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-md card-hover border-b-8 border-purple-500 transition-all">
+                    <div class="text-purple-600 text-4xl mb-6"><i class="fas fa-hand-pointer"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Touch Dynamics</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">ทิศทางการลากนิ้ว (Swipe Pattern) และพื้นที่สัมผัสบนหน้าจอที่สะท้อนถึงความถนัดทางกายภาพของแต่ละคน</p>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-md card-hover border-b-8 border-green-500 transition-all">
+                    <div class="text-green-600 text-4xl mb-6"><i class="fas fa-globe-americas"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Context Data</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-light">มิติของสถานที่ (GPS), ช่วงเวลาที่ใช้งาน และอุปกรณ์ประจำตัว (Hardware Profile) มาคำนวณร่วมกันเพื่อประเมินความเสี่ยง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Engine Section -->
+    <section id="ai-engine" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">AI Core Simulation: One-Class SVM</h2>
+                <p class="text-gray-600">จำลองหัวใจของ ASIF ในการสร้างขอบเขตพฤติกรรมเพื่อตรวจจับความผิดปกติ</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12 items-start">
+                <!-- Controls -->
+                <div class="lg:col-span-1 space-y-6 bg-gray-50 p-10 rounded-[2rem] border border-gray-200 shadow-inner">
+                    <h3 class="font-bold text-gray-900 text-xl mb-4 font-sans">Adaptive AI Engine</h3>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed font-light">
+                        ASIF ใช้โมเดลที่เรียนรู้เฉพาะพฤติกรรมปกติของ "นาย" เพียงคนเดียว (Positive Data) โดยไม่จำเป็นต้องเห็นพฤติกรรมของผู้บุกรุกมาก่อน ระบบจึงมีความเป็นส่วนตัวสูง
+                    </p>
+                    <hr class="border-gray-200 my-6">
+                    <div class="space-y-4">
+                        <label class="block text-sm font-bold text-gray-700 uppercase tracking-widest">
+                            ความเข้มงวด (Nu Parameter): <span id="nu-value" class="text-blue-600 ml-2">0.05</span>
+                        </label>
+                        <input type="range" id="nu-slider" min="0.01" max="0.5" step="0.01" value="0.05" class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold">
+                            <span>Flexible</span>
+                            <span>Strict</span>
                         </div>
-                        <div class="flex justify-between border-b pb-2">
-                            <span>พฤติกรรมการใช้งานจริง</span>
-                            <span class="text-red-600 font-bold">ผิดปกติ (ตรวจไม่พบ)</span>
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-2xl">
+                    <div class="chart-container">
+                        <canvas id="svmChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-8 text-[10px] md:text-xs text-center font-bold uppercase tracking-widest">
+                        <div class="flex items-center justify-center text-blue-600">
+                            <span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span> ปกติ
                         </div>
-                        <p class="italic text-gray-500 mt-4">* นี่คือจุดที่ Soft Identity เข้ามาเติมเต็ม</p>
+                        <div class="flex items-center justify-center text-red-600">
+                            <span class="w-3 h-3 rounded-full bg-red-500 mr-2"></span> ผิดปกติ (Risk)
+                        </div>
+                        <div class="flex items-center justify-center text-gray-400">
+                            <span class="w-3 h-3 border border-gray-400 border-dashed mr-2"></span> ขอบเขต AI
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Concept Section -->
-    <section id="concept" class="py-20 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4">
+    <!-- AI Assistant Section -->
+    <section id="ai-assistant" class="py-24 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 text-white">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Soft Identity คืออะไร?</h2>
-                <p class="text-gray-600">อัตลักษณ์ที่เกิดจาก "การกระทำ" ไม่ใช่ "สิ่งที่มี"</p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 font-sans">ASIF AI Assistant</h2>
+                <p class="text-gray-600">ระบบผู้ช่วยที่พร้อมให้ความรู้และดึงสติผู้ใช้งานในเวลาที่ต้องการ</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-md card-hover">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600 font-bold text-2xl">⌨️</div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Behavioral Biometrics</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        วิเคราะห์ลักษณะการพิมพ์ (Typing), การสัมผัส (Touch Dynamics) และแรงกด ซึ่งแต่ละคนมีเอกลักษณ์เฉพาะตัวที่ปลอมแปลงได้ยาก
-                    </p>
+
+            <div class="grid md:grid-cols-2 gap-20 items-center text-gray-800">
+                <div class="order-2 md:order-1 relative">
+                    <!-- Phone UI -->
+                    <div class="bg-gray-900 rounded-[3rem] shadow-2xl p-6 border-[12px] border-gray-900 max-w-sm mx-auto relative h-[600px]">
+                        <div class="h-6 w-32 bg-gray-900 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-2xl z-20"></div>
+                        <div class="bg-white h-full w-full rounded-[2rem] overflow-hidden flex flex-col">
+                            <div class="bg-blue-600 p-4 pt-8 text-white text-center font-bold font-sans">ASIF Assistant</div>
+                            <div class="flex-grow p-4 space-y-4 bg-gray-50 overflow-y-auto font-sans">
+                                <div class="flex items-start space-x-2">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold">A</div>
+                                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-xs leading-relaxed font-light">พฤติกรรมการพิมพ์ของคุณเปลี่ยนไปมากในช่วงนี้ คุณกำลังกังวลใจเรื่องอะไรอยู่หรือเปล่าครับ?</div>
+                                </div>
+                                <div class="flex justify-end font-sans">
+                                    <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-xs max-w-[80%] font-light">ช่วยตรวจสอบเบอร์ที่โทรมาหน่อยครับ 081-XXX-XXXX</div>
+                                </div>
+                                <div class="flex items-start space-x-2 font-sans">
+                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold">A</div>
+                                    <div class="bg-red-50 p-3 rounded-2xl rounded-tl-none border border-red-100 shadow-sm text-xs">
+                                        <span class="text-red-600 font-bold font-sans">ตรวจพบความเสี่ยง!</span><br>เบอร์นี้มีประวัติการทำ Social Engineering ในระบบ ASIF Network ครับ
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t bg-white">
+                                <div class="w-full h-10 bg-gray-100 rounded-full flex items-center px-4 text-xs text-gray-400 italic">คุยกับผู้ช่วยของคุณ...</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Card 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-md card-hover">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-purple-600 font-bold text-2xl">📍</div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Contextual Factors</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        ตรวจสอบสภาพแวดล้อม เช่น อุปกรณ์เดิม, สถานที่เดิม, และช่วงเวลาที่ใช้งานปกติ เพื่อสร้าง Probabilistic Identity Score
-                    </p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-md card-hover">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-green-600 font-bold text-2xl">🧠</div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Adaptive AI</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        ใช้ Machine Learning (One-Class SVM) เรียนรู้พฤติกรรมปกติของผู้ใช้ และปรับเปลี่ยนเกณฑ์การตรวจสอบตามระดับความเสี่ยงแบบ Dynamic
-                    </p>
+                <div class="order-1 md:order-2 space-y-10">
+                    <div class="space-y-4">
+                        <div class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Cognitive Friction</div>
+                        <h3 class="text-3xl font-bold tracking-tight font-sans">สร้าง "แรงเสียดทานเชิงบวก"</h3>
+                        <p class="text-gray-600 leading-relaxed font-light">เมื่อ AI ตรวจจับความผิดปกติ ASIF จะไม่บล็อกทันที แต่จะสร้าง Chat Head เพื่อกระตุ้นให้ผู้ใช้ "หยุดคิดและทบทวน" (Decelerate Decision) ซึ่งเป็นอาวุธที่ได้ผลที่สุดกับ Scammer</p>
+                    </div>
+                    <div class="p-8 bg-blue-600 text-white rounded-[2rem] shadow-xl relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-bold mb-3 font-sans"><i class="fas fa-fingerprint mr-2"></i> User-Centered Design</h4>
+                            <p class="text-sm opacity-90 leading-relaxed font-light font-sans">เราเน้นความโปร่งใส ผู้ใช้งานคือเจ้าของข้อมูล ASIF ทำงานอยู่เบื้องหลังเพื่อซัพพอร์ต ไม่ใช่เพื่อครอบงำหรือควบคุมสิทธิเสรีภาพของผู้ใช้</p>
+                        </div>
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <i class="fas fa-shield-alt text-8xl"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technical Details (From Draft Version 1) -->
-    <section id="technical" class="py-20">
+    <!-- Human-in-the-Loop & SCD Section (New Selling Point) -->
+    <section id="intervention" class="py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Technical Framework</h2>
-                <p class="text-gray-600">เบื้องหลังการทำงานของระบบ Bio-Key</p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 font-sans">Intervention Strategy & SCD</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600">นวัตกรรมการตรวจจับการถูกบังคับด้วยความเร็ว (Soon Confidence Detector)</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="flex items-start bg-gray-50 p-6 rounded-3xl border border-gray-100 card-hover transition-all">
+                        <div class="bg-gray-800 text-white p-4 rounded-2xl mr-6 feature-icon">
+                            <i class="fas fa-user-check text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 font-sans">Intervention Challenge</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed font-light">เมื่อความเชื่อมั่นต่ำ (Low Confidence) ระบบจะส่ง Challenge ที่ต้องใช้การตัดสินใจของมนุษย์จริง ไม่ว่าจะส่งไปหาผู้ใช้หรือส่งไปให้กับทางเจ้าของเพื่อดึงสติผู้ใช้</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-green-50 p-6 rounded-3xl border border-green-100 card-hover transition-all">
+                        <div class="bg-green-600 text-white p-4 rounded-2xl mr-6 feature-icon">
+                            <i class="fas fa-sync-alt text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 font-sans">Adaptive Feedback Loop</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed font-light">ผลลัพธ์จากการตอบสนอง Challenge จะถูกส่งกลับไป Retrain โมเดล AI ประจำตัวผู้ใช้ เพื่อปรับปรุงความแม่นยำให้สูงขึ้นตามกาลเวลา</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-gray-100">
+                        <h4 class="text-center font-bold text-gray-900 mb-8 font-sans uppercase tracking-widest">Adaptive Intervention Flow</h4>
+                        <div class="space-y-4 relative">
+                            <div class="p-4 bg-blue-600 text-white rounded-2xl text-center text-sm font-bold shadow-lg z-10 relative">Passive Authentication (Monitoring)</div>
+                            <div class="flex justify-center"><i class="fas fa-arrow-down text-gray-300"></i></div>
+                            <div class="p-4 bg-yellow-500 text-white rounded-2xl text-center text-sm font-bold shadow-lg z-10 relative">Anomaly Detected (Risk Score > 70%)</div>
+                            <div class="flex justify-center"><i class="fas fa-arrow-down text-gray-300"></i></div>
+                            <div class="p-4 bg-orange-600 text-white rounded-2xl text-center text-sm font-bold shadow-lg z-10 relative">Warning Popup + SCD Active</div>
+                            <div class="flex justify-center"><i class="fas fa-arrow-down text-gray-300"></i></div>
+                            <div class="p-4 bg-red-600 text-white rounded-2xl text-center text-sm font-bold shadow-lg z-10 relative">Intervention Challenge Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security" class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4 italic uppercase tracking-tighter font-sans">Biological Signature Analysis</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto mb-4"></div>
+                <p class="text-gray-400 font-light">การวิเคราะห์มิติพฤติกรรมเชิงลึกที่ "บอทสุ่มค่า" ไม่สามารถเลียนแบบได้</p>
             </div>
             
-            <div class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-12 bg-gray-900 text-white">
-                        <h3 class="text-2xl font-bold mb-8">Feature Engineering</h3>
-                        <div class="space-y-6">
-                            <div class="border-l-4 border-blue-500 pl-4">
-                                <h4 class="font-bold text-blue-400">Keystroke Dynamics</h4>
-                                <p class="text-sm text-gray-400 mt-1">วัดค่า Dwell Time (DT) และ Flight Time (FT) ในระดับมิลลิวินาที พร้อมใช้ Z-score Standardization</p>
-                            </div>
-                            <div class="border-l-4 border-purple-500 pl-4">
-                                <h4 class="font-bold text-purple-400">Touch Dynamics</h4>
-                                <p class="text-sm text-gray-400 mt-1">คำนวณ Velocity, Acceleration และ Curvature ของนิ้วมือ เพื่อแยกแยะ "มนุษย์" ออกจาก "บอท"</p>
-                            </div>
-                            <div class="border-l-4 border-green-500 pl-4">
-                                <h4 class="font-bold text-green-400">Spatio-Temporal Vector</h4>
-                                <p class="text-sm text-gray-400 mt-1">มัดรวมข้อมูล Location, Time และ Frequency เพื่อคำนวณความน่าจะเป็นของตัวตน (P(User | Context))</p>
-                            </div>
-                        </div>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-bold text-white flex items-center font-sans tracking-tight">
+                        <i class="fas fa-microchip mr-4 text-blue-400"></i> Pattern Consistency vs Random Noise
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm">
+                        แม้บอทจะถูกโปรแกรมให้สุ่มค่า (Random Noise) เพื่อหลบเลี่ยงการตรวจจับ Jitter แบบเดิม แต่สิ่งที่บอทขาดคือ <strong>"Muscle Memory Correlation"</strong> หรือความสัมพันธ์ของจังหวะที่เกิดจากความเคยชินของกล้ามเนื้อมนุษย์จริง <br><br>
+                        ASIF วิเคราะห์ 5 มิติสำคัญเพื่อแยกแยะลายนิ้วมือทางพฤติกรรมที่แท้จริงออกจากระบบอัตโนมัติที่พยายามปลอมตัว
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="simulateBehavioralSignature()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold transition flex items-center justify-center shadow-lg">
+                            <i class="fas fa-sync-alt mr-2"></i> วิเคราะห์ Signature
+                        </button>
                     </div>
-                    <div class="p-8 md:p-12">
-                        <h3 class="text-2xl font-bold mb-8 text-gray-900">Algorithm & Security</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-2 rounded mr-4 font-mono text-blue-700">OCSVM</div>
-                                <div>
-                                    <h4 class="font-bold">One-Class SVM</h4>
-                                    <p class="text-sm text-gray-600">เรียนรู้เฉพาะพฤติกรรมเจ้าของบัญชี สร้าง Hyperplane เพื่อโอบล้อมข้อมูลปกติและตรวจจับ Outlier</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-orange-100 p-2 rounded mr-4 font-mono text-orange-700">GANs Def</div>
-                                <div>
-                                    <h4 class="font-bold">Adversarial Defense</h4>
-                                    <p class="text-sm text-gray-600">ใช้ Jitter Analysis ตรวจหา Micro-variance ของมนุษย์ ป้องกันการปลอมแปลงพฤติกรรมโดย AI (GANs)</p>
-                                </div>
-                            </div>
-                            <div class="mt-8 p-4 bg-gray-50 rounded-xl border border-dashed border-gray-300">
-                                <h4 class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Security Pipeline</h4>
-                                <p class="text-sm">Client-Side SDK ➔ Public Key Encryption ➔ TLS 1.3 ➔ Brain Processor (Server)</p>
-                            </div>
-                        </div>
+                    <div class="grid grid-cols-2 gap-4 text-[10px] uppercase font-bold tracking-widest font-sans">
+                        <div class="flex items-center text-blue-400"><span class="w-3 h-3 bg-blue-400 rounded-full mr-2 opacity-50"></span> Human Signature</div>
+                        <div class="flex items-center text-red-400"><span class="w-3 h-3 bg-red-400 rounded-full mr-2 opacity-50"></span> Sophisticated Bot</div>
                     </div>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-[2.5rem] border border-gray-700 shadow-2xl chart-container h-[450px]">
+                    <canvas id="behavioralRadarChart"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Use Cases Section -->
-    <section id="use-cases" class="py-20 bg-blue-50">
+    <!-- Framework Overview Section -->
+    <section id="framework" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 font-sans">ASIF Technical Architecture</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600 italic font-light">การปกป้องแบบ Passive Mode ที่ทำงานเบื้องหลัง 24/7 (อ้างอิงจาก Pipeline ใน PDF)</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="group p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 card-hover text-center transition-all hover:bg-blue-600 hover:text-white shadow-sm">
+                    <div class="text-blue-600 group-hover:text-white text-4xl mb-6"><i class="fas fa-code"></i></div>
+                    <h4 class="text-xl font-bold mb-4 font-sans uppercase tracking-tight">Data Collector (SDK)</h4>
+                    <p class="text-sm opacity-80 leading-relaxed font-light text-gray-600 group-hover:text-white">ฝังตัวเป็น SDK ในแอปธนาคาร ดักจับเหตุการณ์ KeyDown/KeyUp, TouchStart และ SensorData เข้ารหัสทันทีด้วย Public Key + TLS 1.3 เพื่อความปลอดภัยสูงสุด</p>
+                </div>
+                <div class="group p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 card-hover text-center transition-all hover:bg-blue-600 hover:text-white shadow-sm">
+                    <div class="text-blue-600 group-hover:text-white text-4xl mb-6"><i class="fas fa-brain"></i></div>
+                    <h4 class="text-xl font-bold mb-4 font-sans uppercase tracking-tight">Brain Processor (Server)</h4>
+                    <p class="text-sm opacity-80 leading-relaxed font-light text-gray-600 group-hover:text-white">ระบบ Preprocessing หลังบ้านที่ทำการ Normalization ข้อมูลดิบเป็น Z-score และทำ Feature Fusion เพื่อสร้าง Unified Feature Vector (V_total)</p>
+                </div>
+                <div class="group p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 card-hover text-center transition-all hover:bg-blue-600 hover:text-white shadow-sm">
+                    <div class="text-blue-600 group-hover:text-white text-4xl mb-6"><i class="fas fa-check-double"></i></div>
+                    <h4 class="text-xl font-bold mb-4 font-sans uppercase tracking-tight">Verifier (OCSVM)</h4>
+                    <p class="text-sm opacity-80 leading-relaxed font-light text-gray-600 group-hover:text-white">โหลดโมเดลประจำตัวผู้ใช้และคำนวณ Decision Function เพื่อระบุผลลัพธ์แบบ Pass/Fail พร้อมปรับค่า Nu แบบ Dynamic ตามความเสี่ยงของบริบท</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Impact Section (New Selling Point) -->
+    <section class="py-20 bg-blue-600 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8 font-sans tracking-tight italic">Privacy by Design & <br>Business Impact</h2>
+                    <div class="space-y-6 font-light opacity-90">
+                        <p>ASIF ถูกออกแบบมาเพื่อธนาคารที่ใส่ใจทั้งความปลอดภัยและสิทธิส่วนบุคคล:</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center"><i class="fas fa-check-circle mr-3"></i> <strong>PDPA Compliant:</strong> ข้อมูลพฤติกรรมถูกเข้ารหัสและไม่สามารถย้อนกลับเป็นตัวตนจริงได้หากไม่มีกุญแจถอดรหัส</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle mr-3"></i> <strong>Zero Latency UX:</strong> การประมวลผลเบื้องหลังทำให้ผู้ใช้ไม่ต้องพิมพ์ OTP บ่อยครั้งในบริบทที่ปลอดภัย</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle mr-3"></i> <strong>Reduced Losses:</strong> ช่วยลดมูลค่าความเสียหายจาก Social Engineering และบัญชีม้าได้ถึง 70-80% ในระบบจำลอง</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-10 rounded-[3rem] border border-white/20">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-2 font-sans">~3.2%</div>
+                        <div class="text-sm uppercase tracking-widest mb-8 opacity-70 font-sans">Expected EER (Equal Error Rate)</div>
+                        <p class="text-sm leading-relaxed">"ความแม่นยำระดับ Biometric มาตรฐานอุตสาหกรรม <br>ที่พร้อมใช้งานจริงบนระบบธนาคารไทย"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-20 -mr-20 -mt-20"></div>
+    </section>
+
+    <!-- Future Roadmap Section -->
+    <section id="roadmap" class="py-24 bg-gray-100">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">การประยุกต์ใช้งาน</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 font-sans tracking-tight uppercase">Future Roadmap</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Case 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-600">
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <span class="mr-2">🛡️</span> ป้องกัน Social Engineering
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                        เมื่อ AI ตรวจพบพฤติกรรม "ความลังเล" (Hesitation) หรือ "ลำดับการใช้งานที่เร่งรีบผิดปกติ" ระบบจะแสดง <strong>Chat Head แจ้งเตือน</strong> ทันที
-                    </p>
-                    <div class="bg-blue-50 p-4 rounded-lg italic text-blue-800 text-sm">
-                        "โปรดระวัง!! การตัดสินใจของคุณดูต่างจากปกติ อาจมีความเสี่ยงโดน Social Engineering"
-                    </div>
-                </div>
-                <!-- Case 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-red-600">
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <span class="mr-2">🐎</span> การตรวจจับบัญชีม้า (Mule Account)
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                        หากบัญชีถูกเปลี่ยนมือ พฤติกรรม Soft Identity จะเปลี่ยนไปอย่างสิ้นเชิง AI จะติด Tag ความเสี่ยง (Risk Score 0-100%) และส่งข้อมูลให้ธนาคารเฝ้าระวังทันที
-                    </p>
-                    <div class="flex gap-2">
-                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">Risk Scoring</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold">Real-time Tagging</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Conclusion -->
-    <section class="py-20 text-center">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-6">ความปลอดภัยที่เข้าถึงใจผู้ใช้งาน</h2>
-            <p class="text-gray-600 mb-10">
-                เรายึดหลัก <strong>User-Centered Design (UCD)</strong> เพื่อให้ระบบความปลอดภัยไม่เป็นภาระ แต่เป็นเหมือน "เพื่อนคู่คิด" ที่คอยช่วยเหลือและให้ความรู้ผู้ใช้ในเวลาที่เสี่ยงที่สุด
-            </p>
-            <p class="text-sm text-gray-400">โครงการนี้ออกแบบภายใต้มาตรฐาน PDPA และจริยธรรมการใช้งาน AI</p>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-blue-600 flex flex-col h-full card-hover transition-all">
+                    <h4 class="font-bold text-blue-600 text-xl mb-4 font-sans">Phase 1</h4>
+                    <p class="text-xs font-bold text-gray-800 mb-2">Alpha Testing</p>
+                    <p class="text-[10px] text-gray-500 leading-relaxed font-light">มุ่งเน้นการเก็บข้อมูลพฤติกรรมในกลุ่มปิดเพื่อสร้าง Baseline Model ที่มีความแม่นยำสูง (EER < 4%)</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-blue-400 flex flex-col h-full card-hover transition-all">
+                    <h4 class="font-bold text-blue-400 text-xl mb-4 font-sans">Phase 2</h4>
+                    <p class="text-xs font-bold text-gray-800 mb-2">Network Integration</p>
+                    <p class="text-[10px] text-gray-500 leading-relaxed font-light font-sans">เชื่อมโยงฐานข้อมูลพฤติกรรมและความเสี่ยงข้ามสถาบันการเงิน เพื่อป้องกันบัญชีม้าในระดับเครือข่าย</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-blue-300 flex flex-col h-full card-hover transition-all">
+                    <h4 class="font-bold text-blue-300 text-xl mb-4 font-sans">Phase 3</h4>
+                    <p class="text-xs font-bold text-gray-800 mb-2">Emotional Sensing</p>
+                    <p class="text-[10px] text-gray-500 leading-relaxed font-light">พัฒนาระบบให้ตรวจจับสภาวะทางอารมณ์ เช่น ความเครียดหรือความกลัว ผ่านรูปแบบการสัมผัสหน้าจอ</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-t-8 border-blue-200 flex flex-col h-full card-hover transition-all">
+                    <h4 class="font-bold text-blue-200 text-xl mb-4 font-sans">Phase 4</h4>
+                    <p class="text-xs font-bold text-gray-800 mb-2">Global Standard</p>
+                    <p class="text-[10px] text-gray-500 leading-relaxed font-light">ยกระดับ ASIF สู่การเป็นมาตรฐานใหม่ของการยืนยันตัวตนในระดับสากล สำหรับทุกแพลตฟอร์มดิจิทัล</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-6 md:mb-0">
-                <span class="text-2xl font-bold text-blue-400">Bio-Key</span>
-                <p class="text-gray-500 text-sm mt-2">© 2026 KBTG x Samsung Hackathon Team</p>
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-10 md:mb-0">
+                <span class="text-3xl font-bold text-blue-400 italic font-sans uppercase">ASIF</span>
+                <p class="text-gray-500 text-sm mt-3 tracking-widest uppercase font-sans">Adaptive Soft Identity Framework</p>
             </div>
-            <div class="flex space-x-6 text-gray-400 text-sm">
-                <span>ปพพัชร์ มีวน (ธรรมศาสตร์)</span>
-                <span>และทีมงาน</span>
+            <div class="text-gray-400 text-sm space-y-2 font-light">
+                <p class="font-bold text-gray-200 uppercase tracking-tighter font-sans">Team ASIF Development</p>
+                <p>นักศึกษา (มหาวิทยาลัยธรรมศาสตร์)</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        const state = {
+            charts: {},
+            nu: 0.05
+        };
+
+        // --- One-Class SVM Simulation ---
+        function generateSVMData(nu) {
+            const userData = Array.from({length: 40}, () => ({
+                x: (Math.random() - 0.5) * 0.5,
+                y: (Math.random() - 0.5) * 0.5
+            }));
+            const outliers = Array.from({length: 15}, () => ({
+                x: (Math.random() - 0.5) * 2.5,
+                y: (Math.random() - 0.5) * 2.5
+            }));
+            const radius = 0.95 - (nu * 1.7);
+            const boundary = Array.from({length: 73}, (_, i) => {
+                const angle = i * 5 * (Math.PI / 180);
+                return { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
+            });
+            return { userData, outliers, boundary };
+        }
+
+        function initSVMChart() {
+            const ctx = document.getElementById('svmChart').getContext('2d');
+            const data = generateSVMData(state.nu);
+            state.charts.svm = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        { label: 'Normal Behavior', data: data.userData, backgroundColor: '#3B82F6', pointRadius: 6, hoverRadius: 8 },
+                        { label: 'Risk/Outliers', data: data.outliers, backgroundColor: '#EF4444', pointRadius: 6, hoverRadius: 8 },
+                        { label: 'Decision Boundary', data: data.boundary, type: 'line', borderColor: '#9CA3AF', borderDash: [5, 5], fill: false, showLine: true, pointRadius: 0, borderWidth: 2 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { min: -1.6, max: 1.6, grid: { display: false }, ticks: { display: false } },
+                        y: { min: -1.6, max: 1.6, grid: { display: false }, ticks: { display: false } }
+                    },
+                    plugins: { legend: { display: false } },
+                    animation: { duration: 400 }
+                }
+            });
+        }
+
+        // --- Behavioral Signature Radar Chart ---
+        function initBehavioralChart() {
+            const ctx = document.getElementById('behavioralRadarChart').getContext('2d');
+            state.charts.behavioral = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Muscle Memory', 'Pressure Curve', 'Pattern Entropy', 'Context Sync', 'Rhythm Stability'],
+                    datasets: [
+                        {
+                            label: 'Human Signature',
+                            data: [90, 85, 40, 95, 80], // Natural Pattern
+                            fill: true,
+                            backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                            borderColor: 'rgb(56, 189, 248)',
+                            pointBackgroundColor: 'rgb(56, 189, 248)',
+                            pointBorderColor: '#fff'
+                        },
+                        {
+                            label: 'Sophisticated Bot',
+                            data: [15, 20, 95, 10, 30], // Random/Uncorrelated Noise
+                            fill: true,
+                            backgroundColor: 'rgba(248, 113, 113, 0.2)',
+                            borderColor: 'rgb(248, 113, 113)',
+                            pointBackgroundColor: 'rgb(248, 113, 113)',
+                            pointBorderColor: '#fff'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: { line: { borderWidth: 3 } },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#9CA3AF', font: { size: 12, family: 'Kanit' } },
+                            ticks: { display: false },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function simulateBehavioralSignature() {
+            const chart = state.charts.behavioral;
+            
+            // Human: Stable high consistency, low random entropy
+            chart.data.datasets[0].data = [
+                85 + Math.random() * 10, 
+                80 + Math.random() * 10, 
+                35 + Math.random() * 10, 
+                90 + Math.random() * 5, 
+                75 + Math.random() * 10
+            ];
+            
+            // Bot: Low consistency in biological features, very high entropy (from randomizer)
+            chart.data.datasets[1].data = [
+                10 + Math.random() * 20, 
+                15 + Math.random() * 20, 
+                85 + Math.random() * 15, 
+                5 + Math.random() * 15, 
+                20 + Math.random() * 25
+            ];
+            
+            chart.update();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initSVMChart();
+            initBehavioralChart();
+            
+            const slider = document.getElementById('nu-slider');
+            if(slider) {
+                slider.addEventListener('input', (e) => {
+                    const val = parseFloat(e.target.value);
+                    document.getElementById('nu-value').innerText = val.toFixed(2);
+                    state.nu = val;
+                    const newData = generateSVMData(val);
+                    state.charts.svm.data.datasets[2].data = newData.boundary;
+                    state.charts.svm.update('none');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
